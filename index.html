@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title>JS-Revision</title>
+    </head>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .circle{
+            border-radius: 100%;
+            width: 50px;
+            height: 50px;
+            background-color: aqua;
+            transition-duration:150ms;
+        }
+        .btn{
+            padding: 2px;
+            z-index: 10;
+        }
+        .float{
+            --move: 0vh;
+            position: absolute;
+            top: calc(45vh + var(--move));
+        }
+    </style>
+    <body>
+        <div class="container">
+            <div class="circle float"></div>
+        </div>
+        <button class="btn start">Start</button>
+        <button class="btn stop">Stop</button>
+
+        <script>
+            const circle = document.querySelector(".circle");
+            const start = document.querySelector(".start");
+            const stop = document.querySelector(".stop");
+            function setMove(dist){
+                circle.style.setProperty("--move", `${dist}vh`);
+            }
+            
+            const arr = [10, 0];
+            var i = -1;
+            var id;
+            var isAnimating = false;
+            let lastTime = 0;
+            const delay = 500;
+            start.addEventListener("click", ()=>{
+                if(!isAnimating){
+                    id = window.requestAnimationFrame(animate);
+                    isAnimating = true;
+                }
+            })
+
+            stop.addEventListener("click",()=>{
+                if(isAnimating){
+                    window.cancelAnimationFrame(id);
+                    isAnimating = false;
+                }
+            })
+
+            function animate(currentTime){
+                if(currentTime - lastTime > delay){
+                    i = (i+1)%2;
+                    setMove(arr[i]);
+                    lastTime = currentTime;
+                }
+                id = window.requestAnimationFrame(animate);
+            }
+
+            
+        </script>
+    </body>
+</html>

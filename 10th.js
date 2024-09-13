@@ -6,11 +6,11 @@
 
 // to stop the execution we can use clearInterval(timerId)
 
-let time = Date.now();
-const id = setInterval(()=>{
-    console.log(Date.now()-time);
-    time = Date.now();
-}, 500);
+// let time = Date.now();
+// const id = setInterval(()=>{
+//     console.log(Date.now()-time);
+//     time = Date.now();
+// }, 500);
 
 // For setInterval the function stays in memory until clearInterval is called.
 
