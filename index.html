@@ -2,10 +2,11 @@
 
 <head>
     <title>JS-Revision</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <style>
-
-    body{
+    body {
         overflow: hidden;
     }
 
@@ -24,6 +25,7 @@
         animation: spin 5s linear infinite;
         position: relative;
     }
+
     @keyframes spin {
         from {
             transform: rotate(0deg);
@@ -35,11 +37,14 @@
     }
 
     .circle {
+        --transition-speed : 500ms;
+        --transition-delay : 150ms;
         border-radius: 100%;
-        width: 50px;
-        height: 50px;
+        width: 25px;
+        height: 25px;
         background-color: aqua;
-        transition-duration: 300ms;
+        transition-duration: var(--transition-speed);
+        transition-delay: var(--transition-delay);
     }
 
     .btn {
@@ -53,12 +58,43 @@
         top: calc(45% + var(--move));
         left: calc(45% + var(--move));
     }
+
+    .material-symbols-outlined {
+        font-variation-settings:
+            'FILL' #EAC452,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+    }
+
+    .first_star{
+        transition-duration: calc(var(--transition-speed) + 10ms);
+        transition-delay: calc(var(--transition-delay) + 5ms);
+    }
+    .second_star{
+        transition-duration: calc(var(--transition-speed) + 20ms);
+        transition-delay: calc(var(--transition-delay) + 10ms);
+    }
+    .third_star{
+        transition-duration: calc(var(--transition-speed) + 30ms);
+        transition-delay: calc(var(--transition-delay) + 15ms);
+    }
+    .fourth_star{
+        transition-duration: calc(var(--transition-speed) + 40ms);
+        transition-delay: calc(var(--transition-delay) + 20ms);
+    }
 </style>
 
 <body>
     <div class="container">
         <div class="animate_round">
             <div class="circle float"></div>
+            <!-- <div class="glitter">
+                <span class="first_star material-symbols-outlined float">star</span>
+                <span class="second_star material-symbols-outlined float">star</span>
+                <span class="third_star material-symbols-outlined float">star</span>
+                <span class="fourth_star material-symbols-outlined float">star</span >
+            </div> -->
         </div>
     </div>
     <button class="btn start">Start</button>
@@ -69,7 +105,7 @@
         const start = document.querySelector(".start");
         const stop = document.querySelector(".stop");
         function setMove(dist) {
-            circle.style.setProperty("--move", `${dist}vh`);
+            circle.style.setProperty("--move", `${dist}%`);
         }
 
         const arr = [10, 0];
@@ -78,6 +114,7 @@
         var isAnimating = false;
         let lastTime = 0;
         const delay = 500;
+
         start.addEventListener("click", () => {
             id = window.requestAnimationFrame(animate);
             isAnimating = true;
@@ -96,7 +133,6 @@
             }
             id = window.requestAnimationFrame(animate);
         }
-
 
     </script>
 </body>
